@@ -1,0 +1,48 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.book-card {
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.book-cover {
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.book-info {
+    padding: 15px;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.book-author {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.book-price {
+    font-weight: 600;
+    color: #28a745;
+    margin-top: 10px;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+    margin-top: auto;
+} 

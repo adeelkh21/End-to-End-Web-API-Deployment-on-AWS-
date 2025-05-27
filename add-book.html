@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Book - Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-title {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Bookstore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="add-book.html">Add Book</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="form-container">
+            <h2 class="form-title">Add New Book</h2>
+            <form id="addBookForm">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Book Title</label>
+                    <input type="text" class="form-control" id="title" required>
+                    <div class="form-text">Enter the full title of the book.</div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="cover" class="form-label">Cover Image URL</label>
+                    <input type="url" class="form-control" id="cover">
+                    <div class="form-text">Optional: Enter a URL for the book cover image.</div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price ($)</label>
+                    <input type="number" step="0.01" class="form-control" id="price" required>
+                </div>
+                
+                <div class="btn-container">
+                    <a href="index.html" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Add Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-3">
+        <div class="container text-center">
+            <p class="mb-0">© 2024 Bookstore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('addBookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const cover = document.getElementById('cover').value || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3';
+            const price = parseFloat(document.getElementById('price').value);
+            
+            // Get existing books from localStorage or create empty array
+            let books = JSON.parse(localStorage.getItem('books')) || [];
+            
+            // Create new book object
+            const newBook = {
+                id: books.length + 1,
+                title: title,
+                author: author,
+                cover: cover,
+                price: price
+            };
+            
+            // Add new book to array
+            books.push(newBook);
+            
+            // Save updated books array to localStorage
+            localStorage.setItem('books', JSON.stringify(books));
+            
+            // Show success alert
+            alert('Book added successfully!');
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
